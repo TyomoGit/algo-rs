@@ -1,0 +1,8 @@
+[package]
+name = "algo-rs"
+version = "0.1.0"
+edition = "2018"
+description = "for competitive programming"
+
+[dependencies]
+itertools = "=0.9.0"
