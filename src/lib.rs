@@ -75,7 +75,7 @@ pub fn string_slice<T: Display>(slice: &[T]) -> String {
         .join(" ")
 }
 
-pub fn two_dim_vec_string<T: Display>(slice: &[&[T]]) -> String {
+pub fn two_dim_vec_string<T: Display>(slice: &[Vec<T>]) -> String {
     slice.iter()
         .map(|s| string_slice(s))
         .join("\n")
