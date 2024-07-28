@@ -69,14 +69,27 @@ pub fn dijkstra(graph: &[Vec<(usize, usize)>], start: usize) -> Vec<usize> {
 }
 
 /// スライスを空白区切りで文字列に変換する
-pub fn string_slice<T: Display>(slice: &[T]) -> String {
+pub fn string_slice<T: ToString>(slice: &[T]) -> String {
     slice.iter()
         .map(std::string::ToString::to_string)
         .join(" ")
 }
 
-pub fn two_dim_vec_string<T: Display>(slice: &[Vec<T>]) -> String {
+pub fn dbg_two_dim_vec_string<T: Debug>(slice: &[Vec<T>]) -> String {
     slice.iter()
-        .map(|s| string_slice(s))
+        .map(|s| format!("{:?}", s))
         .join("\n")
+}
+
+#[cfg(test)]
+mod tests{
+    use super::*;
+    #[test]
+    fn two_dim_vec_string_test() {
+        let slice = vec![vec![1, 2, 3], vec![4, 5, 6]];
+        assert_eq!(dbg_two_dim_vec_string(&slice), "[1, 2, 3]\n[4, 5, 6]");
+
+        let slice = vec![vec![Some(1), Some(2), Some(3)], vec![Some(4), Some(5), Some(6)]];
+        assert_eq!(dbg_two_dim_vec_string(&slice), "[Some(1), Some(2), Some(3)]\n[Some(4), Some(5), Some(6)]");
+    }
 }
